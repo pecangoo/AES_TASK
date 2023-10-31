@@ -13,14 +13,10 @@ public class MetaDatas {
     public static Long getMetaSize(String pathStr) {
         Long metaSize = 0L;
         try {
-
-            // Путь к файлу
             Path path = Paths.get(pathStr);
 
-            // Создание пользовательских атрибутов
             UserDefinedFileAttributeView view = Files.getFileAttributeView(path, UserDefinedFileAttributeView.class);
 
-            // Чтение значения размера из метаданных
             String attributeSize = "file.size";
 
             int size = view.size(attributeSize);
@@ -30,7 +26,6 @@ public class MetaDatas {
 
             String valueSize = Charset.defaultCharset().decode(buffer).toString();
             metaSize = Long.valueOf(valueSize);
-            //     System.out.println("Размер файла: " + valueSize);
 
 
         } catch (Exception e) {
@@ -42,13 +37,8 @@ public class MetaDatas {
 
     public static void putMetaSize(String pathStr, Long size) {
         try {
-
             Path path = Paths.get(pathStr);
-
-            // Создание пользовательских атрибутов
             UserDefinedFileAttributeView view = Files.getFileAttributeView(path, UserDefinedFileAttributeView.class);
-
-            // Запись значения размера файла в метаданные
             String attributeSize = "file.size";
             String valueSize = size.toString(); // Размер файла
 

@@ -65,7 +65,6 @@ public class AES_256_CTR implements Crypter {
         ArrayList<CryptTH> listCalls = new ArrayList<>();
         readerFile.init(this.inPath);
 
-        // Если режим ENCODE, то узнаем размер исходника и ставим мету в конечным файл
         if (cryptMode == 1/*mode*/) {
             MetaDatas.putMetaSize(outPath, readerFile.getSize().longValue());
         } else {
@@ -74,7 +73,6 @@ public class AES_256_CTR implements Crypter {
 
         try {
             while (true) {
-                // Считывается исходный файл в одном потоке циклично по блокам
                 ByteArrayInputStream byteArrayInputStream =
                         readerFile.readNextBlock();
 
@@ -112,7 +110,7 @@ public class AES_256_CTR implements Crypter {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        numThread = 1; // Обнуляем потоки
+        numThread = 1; 
     }
 
     private CryptTH getNewThread(

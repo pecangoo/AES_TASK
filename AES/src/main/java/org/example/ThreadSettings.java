@@ -2,6 +2,10 @@ package org.example;
 
 import javax.crypto.spec.IvParameterSpec;
 
+/*
+    Не лучшее решение. Лучше настройки сделать частью AES класса.
+    Но оно быстрое.
+*/
 public class ThreadSettings {
     public static final IvParameterSpec ivParameterSpec =
             new IvParameterSpec(
